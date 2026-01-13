@@ -61,3 +61,57 @@ These values come from example training and evaluation logs included with the re
 Adjust script names and arguments to match the actual scripts in `AI_vs_Human_classifier/`.
 
 1. Install dependencies (example):
+   ```
+   python -m pip install -r requirements.txt
+   ```
+
+2. Train (example):
+   ```
+   python train.py --dataset imdb --model_name_or_path ./pretrained-model --output_dir ./runs/run1
+   ```
+
+3. Evaluate (example):
+   ```
+   python evaluate.py --model_dir ./runs/run1 --dataset imdb
+   ```
+
+4. Inference (example):
+   ```
+   python predict.py --model_dir ./runs/run1 --text "This movie was fantastic!"
+   ```
+
+Notes:
+- If you run in Colab/Jupyter, restart the kernel after installing packages if you see missing imports or unexpected behavior.
+- If you have a GPU, ensure the scripts use `device="cuda"` and set `pin_memory=True`. If running on CPU, set `pin_memory=False` to avoid DataLoader warnings.
+
+## Files & artifacts
+
+- Tokenizer files: `vocab.txt`, `tokenizer_config.json`, `special_tokens_map.json`
+- Model weights: `model.safetensors`
+- Model config: `config.json`
+- Training log excerpts and dataset download logs are useful for debugging and reproducibility.
+
+## Reproducibility & environment
+
+- The example logs indicate dataset downloads from Hugging Face and model/tokenizer files being loaded. Ensure:
+  - Internet access for dataset/model downloads (or pre-download artifacts).
+  - Hugging Face credentials if you need access to private resources.
+- Recommendation: add a `requirements.txt` with pinned package versions that were used to produce the example logs.
+
+## Suggestions / TODO
+
+- Add a `requirements.txt` with pinned versions used for the example run.
+- Add (or document) concrete CLI scripts or a Jupyter notebook demonstrating:
+  - Full training loop
+  - Evaluation and metric computation
+  - Inference example
+- Document how to enable GPU/TPU training and recommended settings (batch size, `pin_memory`, mixed precision).
+- Add tests or a small example to quickly verify the environment (e.g., a tiny dataset run).
+
+## License
+
+Add a `LICENSE` file (e.g., MIT, Apache-2.0) if you plan to make the repository public.
+
+## Contact
+
+Maintainer: pa7003
